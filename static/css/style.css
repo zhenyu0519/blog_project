@@ -1,0 +1,73 @@
+/*landing intro*/
+@import url('https://fonts.googleapis.com/css?family=Raleway');
+@import url('https://fonts.googleapis.com/css?family=Oswald&effect=stonewash');
+
+html, body{
+    margin:0;
+    padding:0;
+    height:100%;
+    width:100%;
+}
+
+.intro{
+    height:90%;
+    width:100%;
+    margin:auto;
+    background:url("/static/image/bg2.jpg") no-repeat 50% 50%;
+    display: table;
+    top:0;
+    background-size: cover;
+}
+
+.intro .inner{
+    display: table-cell;
+    vertical-align: middle;
+    width:100%;
+    max-width: none;
+}
+
+.content{
+    max-width:500px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.content h1{
+    font-family:'Oswald',sans-serif;
+    color:#0099cc;
+    text-shadow: 2px 2px 400px #fff;
+    font-size:700%;
+}
+
+.content h1:hover{
+    color:#fff;
+}
+
+#avatar{
+    padding: 50px;
+    width:  250px;
+    opacity: 0.5;
+    filter: alpha(opacity=50); /* For IE8 and earlier */
+}
+
+#avatar:hover{
+    opacity: 1;
+    filter: alpha(opacity=100); /* For IE8 and earlier */
+}
+
+/*.btn{*/
+    /*border-radius: 9px;*/
+    /*font-family:'Oswald',sans-serif;*/
+    /*color:#0099cc;*/
+    /*font-size: 135%;*/
+    /*padding: 10px 20px;*/
+    /*border: solid #0099cc 3px;*/
+    /*text-transform: uppercase;*/
+    /*text-decoration: none;*/
+/*}*/
+
+/*.btn:hover{*/
+    /*color:#fff;*/
+    /*border: solid #fff 3px;*/
+/*}*/
+
