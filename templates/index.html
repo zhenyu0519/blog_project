@@ -1,33 +1,5 @@
 {% extends "base.html" %}
 
-{% block postcontent %}
-    <!-- Blog Entries -->
-    <div class="post">
-        <img src="/static/image/bg1.jpg" alt="" style="width: 100%">
-        <!-- First Blog Post -->
-        <div class="well-sm">
-            <h2>
-                My First Blog
-            </h2>
-        </div>
-        <div class="well-sm">
-            <p><span class="glyphicon glyphicon-time"></span> Posted on August 28, 2013 at 10:00 PM</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore, veritatis, tempora,
-                necessitatibus
-                inventore nisi quam quia repellat ut tempore laborum possimus eum dicta id animi corrupti
-                debitis
-                ipsum
-                officiis rerum.</p>
-            <hr>
-            <div class="row">
-                <div class="col-md-4">
-                    <button class="btn">Read More <span
-                            class="glyphicon glyphicon-chevron-right"></span></button>
-                </div>
-                <div class="col-md-4 col-md-offset-4">
-                    <p><span class="glyphicon glyphicon-comment"><b> Comments </b><span>0</span></span></p>
-                </div>
-            </div>
-        </div>
-    </div>
+{% block content %}
+{% include "content_component.html" %}
 {% endblock %}
