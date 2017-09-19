@@ -78,8 +78,12 @@ WSGI_APPLICATION = 'blog_project.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME':'blogdb',
+        'USER':'root',
+        'PASSWORD':'362908227',
+        'HOST':'', #default 127.0.0.1
+        'POST':'', #default 3306
     }
 }
 
@@ -102,7 +106,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
-#Static dir define the additional locations the staticfiles app will traverse
+# Static dir define the additional locations the staticfiles app will traverse
 STATICFILES_DIRS=[
 os.path.join(BASE_DIR, 'static')
 ]
+# # Set the static root setting to the directory from which you would like to serve
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
