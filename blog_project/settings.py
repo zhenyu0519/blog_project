@@ -112,3 +112,9 @@ os.path.join(BASE_DIR, 'static')
 ]
 # # Set the static root setting to the directory from which you would like to serve
 # STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+# Set the upload url
+MEDIA_URL = '/uploads/'
+
+# Set tje upload path
+MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')

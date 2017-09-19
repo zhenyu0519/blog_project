@@ -19,7 +19,7 @@ class Article(models.Model):
     published_date = models.DateTimeField(auto_now_add=True, blank=False, null=False)
     visit_time = models.IntegerField(blank=False, null=False)
     article_category = models.ForeignKey(Category, blank=False, null=False)
-    article_image = models.ImageField(upload_to='image/%Y%m', max_length=2000, blank=True, null=True)
+    article_image = models.ImageField(upload_to='post_image/%Y%m%d', max_length=2000, blank=True, null=True)
 
     class Meta:
         ordering=['-published_date']
