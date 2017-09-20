@@ -37,14 +37,7 @@
             {% endfor %}
             {% endautoescape %}
             <!-- Pager -->
-            <ul class="pager well">
-                <button class="previous btn pull-left">
-                    <span class="glyphicon glyphicon-hand-left"> Older</span>
-                </button>
-                <button class="next btn pull-right">
-                    <span class="glyphicon glyphicon-hand-right"> Newer</span>
-                </button>
-            </ul>
+            {% include "paginator.html" %}
         </div>
 
         <!-- Blog Sidebar Widgets Column -->

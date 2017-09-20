@@ -1,0 +1,23 @@
+<div id="pagination">
+    <ul class="pager well">
+        {% if article_list.has_previous %}
+            <button class="previous btn pull-left">
+                <a href="?page={{ article_list.previous_page_number }}">
+                    <span class="glyphicon glyphicon-hand-left"> Newer</span></a>
+            </button>
+        {% else %}
+            <button class="previous btn pull-left"><span class="glyphicon glyphicon-hand-left"> Newer</span></button>
+        {% endif %}
+
+        <li class="active">{{ article_list.number }}/{{ article_list.paginator.num_pages }}</li>
+
+        {% if article_list.has_next %}
+            <button class="next btn pull-right">
+                <a href="?page={{ article_list.next_page_number }}">
+                    <span class="glyphicon glyphicon-hand-right"> Older</span></a>
+            </button>
+        {% else %}
+            <button class="next btn pull-right"><span class="glyphicon glyphicon-hand-right"> Older</span></button>
+        {% endif %}
+    </ul>
+</div>
