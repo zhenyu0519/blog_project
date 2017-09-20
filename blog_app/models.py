@@ -21,6 +21,7 @@ class Article(models.Model):
     article_category = models.ForeignKey(Category, blank=False, null=False)
     article_image = models.ImageField(upload_to='post_image/%Y%m%d', max_length=2000, blank=True, null=True)
 
+
     class Meta:
         ordering=['-published_date']
 
