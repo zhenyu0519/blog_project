@@ -24,7 +24,7 @@ def home(request):
 
 def post(request):
     try:
-
+        category_list = Category.objects.all()
         article_list = Article.objects.all()
         paginator = Paginator(article_list,5)
         try:
@@ -32,10 +32,16 @@ def post(request):
             article_list = paginator.page(page)
         except(EmptyPage, InvalidPage, PageNotAnInteger):
             article_list=paginator.page(1)
-            pass
+        archive_list = Article.objects.distinct_date()
     except Exception as e:
         print e
     return render(request, 'post.html', locals())
 
+def article(request):
+    article_list = Article.objects.all()
+    return render(request, 'article.html', locals())
+
 def about(request):
     return render(request, 'about.html', locals())
+
+
