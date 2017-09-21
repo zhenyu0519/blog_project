@@ -10,6 +10,17 @@ class Category(models.Model):
     def __unicode__(self):
         return self.category_name
 
+# Article Manager
+class ArticleManager(models.Manager):
+    def distinct_date(self):
+        distinct_date_list = []
+        date_list = self.values('published_date')
+        for date in date_list:
+            date = date['published_date'].strftime('%Y-%m Archives')
+            if date not in distinct_date_list:
+                distinct_date_list.append(date)
+        return distinct_date_list
+
 # Article
 class Article(models.Model):
     title = models.CharField(max_length=100, blank=False, null=False, unique=True)
@@ -21,7 +32,7 @@ class Article(models.Model):
     article_category = models.ForeignKey(Category, blank=False, null=False)
     article_image = models.ImageField(upload_to='post_image/%Y%m%d', max_length=2000, blank=True, null=True)
 
-
+    objects = ArticleManager()
     class Meta:
         ordering=['-published_date']
 
