@@ -2,7 +2,8 @@
     <ul class="pager well">
         {% if article_list.has_previous %}
             <button class="previous btn pull-left">
-                <a href="?page={{ article_list.previous_page_number }}">
+                <a href="?page=
+                        {{ article_list.previous_page_number }}{% if request.GET.year %}&year={{ request.GET.year }}{% endif %}{% if request.GET.month %}&month={{ request.GET.month }}{% endif %}">
                     <span class="glyphicon glyphicon-hand-left"> Newer</span></a>
             </button>
         {% else %}
@@ -13,7 +14,8 @@
 
         {% if article_list.has_next %}
             <button class="next btn pull-right">
-                <a href="?page={{ article_list.next_page_number }}">
+                <a href="?page=
+                        {{ article_list.next_page_number }}{% if request.GET.year %}&year={{ request.GET.year }}{% endif %}{% if request.GET.month %}&month={{ request.GET.month }}{% endif %}">
                     <span class="glyphicon glyphicon-hand-right"> Older</span></a>
             </button>
         {% else %}

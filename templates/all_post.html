@@ -1,0 +1,21 @@
+<!-- Blog Entries Column -->
+<div class="col-md-8">
+    <div>
+        <h1 class="page-header">
+            All Posts
+        </h1>
+    </div>
+    <!-- Blog Entries -->
+    {% for article in article_list %}
+    <div class="post">
+        <!-- First Blog Post -->
+        <div class="well-sm">
+            <h3>
+                <a href='{% url "" %}?id={{ article.id }}'>{{ article.title }} {{ article.published_date }} {{ article.auther }}</a>
+            </h3>
+        </div>
+    </div><br><br>
+    {% endfor %}
+    <!-- Pager -->
+    {% include "paginator.html" %}
+</div>

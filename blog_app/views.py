@@ -40,6 +40,12 @@ def post(request):
     return render(request, 'post.html', locals())
 
 def article(request):
+    id = request.GET.get('id', None)
+    try:
+        article = Article.objects.get(pk=id)
+    except Article.DoesNotExist:
+        return render(request,'failure.html',{'reason':'No matched article found'})
+
     return render(request, 'article.html', locals())
 
 def about(request):

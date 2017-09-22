@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block navbar %}
+    {% include "navbar.html" %}
+{% endblock %}
+{% block main_content %}
+    <div>
+        <h1 class="page-header text-center">
+            {{ article.title }}
+        </h1>
+    </div>
+    <!-- Blog Entries -->
+    <div class="post">
+        <img class="img-responsive" src="/uploads/{{ article.article_image }}" alt="" style="width: 100%">
+        <!-- First Blog Post -->
+        <div class="well-sm">
+            <h4><span class="glyphicon glyphicon-tag"> {{ article.article_category }}</span></h4>
+            <h4><span class="glyphicon glyphicon-time"> {{ article.published_date }}</span></h4>
+            <h4><span class="glyphicon glyphicon-pencil"> {{ article.author }}</span></h4>
+            <p>{{ article.content | safe }}</p>
+            <hr>
+            <!-- Share To Social Media -->
+            <!-- Comments -->
+        </div>
+    </div>
+    <!-- Pager -->
+    {% include "paginator.html" %}
+    <hr>
+{% endblock %}
+

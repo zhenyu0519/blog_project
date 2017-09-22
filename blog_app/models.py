@@ -17,6 +17,7 @@ class ArticleManager(models.Manager):
         date_list = self.values('published_date')
         for date in date_list:
             date = date['published_date'].strftime('%Y-%m Archives')
+            # print date
             if date not in distinct_date_list:
                 distinct_date_list.append(date)
         return distinct_date_list
@@ -43,6 +44,9 @@ class Article(models.Model):
 
 # Comment
 class Comment(models.Model):
+    username = models.CharField(max_length=50, blank=True, null=True)
+    email = models.EmailField(max_length=50, blank=True, null=True)
+    url = models.URLField(max_length=100, blank=True, null=True)
     content = models.CharField(max_length=500, blank=False, null=False)
     published_date = models.DateTimeField(auto_now_add=True, blank=False, null=False)
     article = models.ForeignKey(Article, max_length=50, blank=False, null=False)

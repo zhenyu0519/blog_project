@@ -23,8 +23,7 @@
             <hr>
             <div class="row">
                 <div class="col-md-4">
-                    <button class="btn">Read More <span
-                            class="glyphicon glyphicon-chevron-right"></span></button>
+                    <a class="btn" href='{% url "article" %}?id={{ article.id }}'>Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
                 </div>
                 <div class="col-md-4 col-md-offset-4">
                     <p><span class="glyphicon glyphicon-comment"><b> Comments </b><span>{{ article.visit_time }}</span></span></p>

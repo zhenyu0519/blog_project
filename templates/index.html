@@ -1,4 +1,21 @@
 {% extends "base.html" %}
-{% block content %}
-{% include "content_component.html" %}
+
+{% block image_header %}
+    {% include "image_header.html" %}
 {% endblock %}
+
+{% block navbar %}
+    {% include "navbar.html" %}
+{% endblock %}
+
+{% block main_content %}
+    {% include "recent_post.html" %}
+{% endblock %}
+
+{% block side_widget %}
+    {% include "side_widget.html" %}
+{% endblock %}
+
+{#{% block content %}#}
+{#{% include "recent_post.html" %}#}
+{#{% endblock %}#}
