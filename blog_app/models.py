@@ -50,6 +50,7 @@ class Comment(models.Model):
     content = models.CharField(max_length=500, blank=False, null=False)
     published_date = models.DateTimeField(auto_now_add=True, blank=False, null=False)
     article = models.ForeignKey(Article, max_length=50, blank=False, null=False)
+    pid = models.ForeignKey('self',blank=True, null=True)
 
     class Meta:
         ordering=['-published_date']

@@ -1,0 +1,55 @@
+<div class="container">
+<h2>Comments</h2><br>
+<ul>
+    {% for comment in comment_list %}
+        <li>
+            <div><a href='{{ comment.url }}'>{{ comment.username }}</a> @ {{ comment.published_date }}</div>
+
+            <div>
+                <p>{{ comment.content }}</p>
+            </div>
+        </li>
+        {% for children_comment in comment.children_comment %}
+            <li>
+                <div class="reply">
+                    <div class="top"><a href="{{ children_comment.url }}">{{ children_comment.username }}</a>
+                        @ {{ children_comment.published_date }}</div>
+                    <div class="body">
+                        {{ children_comment.content }}
+                    </div>
+                </div>
+            </li>
+        {% endfor %}
+    {% endfor %}
+</ul>
+<hr>
+<br>
+</div>
+
+<div class="container">
+    <h2 class="text-center">Leave Your Comments Here</h2><br>
+    <form action="{% url 'comment_post' %}" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="username"> Name: (required)</label>
+            <p>{{ comment_form.username }}</p>
+        </div>
+        <div class="form-group">
+            <label for="email"> Email: (Optional)</label>
+            <p>{{ comment_form.email }}</p>
+        </div>
+        <div class="form-group">
+            <label for="url"> URL: (Optional)</label>
+            <p>{{ comment_form.url }}</p>
+        </div>
+        <div class="form-group">
+            <label for="comment"> Comment: </label>
+            <p>{{ comment_form.comment }}</p>
+        </div>
+        <p>{{ comment_form.article }} <input name="submit" type="submit" id="submit" tabindex="5" value="Submit"
+                                             class="button"/></p><br>
+    </form>
+</div>
+
+
+

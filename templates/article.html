@@ -16,14 +16,13 @@
             <h4><span class="glyphicon glyphicon-tag"> {{ article.article_category }}</span></h4>
             <h4><span class="glyphicon glyphicon-time"> {{ article.published_date }}</span></h4>
             <h4><span class="glyphicon glyphicon-pencil"> {{ article.author }}</span></h4>
-            <p>{{ article.content | safe }}</p>
+            <p>{{ article.content | safe }}</p><br>
             <hr>
             <!-- Share To Social Media -->
             <!-- Comments -->
         </div>
+        {% include "comment.html" %}
     </div>
-    <!-- Pager -->
-    {% include "paginator.html" %}
-    <hr>
+
 {% endblock %}
 

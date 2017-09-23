@@ -11,7 +11,7 @@
         <!-- First Blog Post -->
         <div class="well-sm">
             <h3>
-                <a href='{% url "" %}?id={{ article.id }}'>{{ article.title }} {{ article.published_date }} {{ article.auther }}</a>
+                <a href='{% url "article" %}?id={{ article.id }}'>{{ article.title }} {{ article.published_date }} {{ article.auther }}</a>
             </h3>
         </div>
     </div><br><br>
