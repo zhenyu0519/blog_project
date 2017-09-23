@@ -1,33 +1,35 @@
 <div class="container">
-<h2>Comments</h2><br>
-<ul>
-    {% for comment in comment_list %}
-        <li>
-            <div><a href='{{ comment.url }}'>{{ comment.username }}</a> @ {{ comment.published_date }}</div>
-
-            <div>
-                <p>{{ comment.content }}</p>
-            </div>
-        </li>
-        {% for children_comment in comment.children_comment %}
+    <h2>Comments</h2><br>
+    <ul class="list-unstyled">
+        {% for comment in comment_list %}
             <li>
-                <div class="reply">
-                    <div class="top"><a href="{{ children_comment.url }}">{{ children_comment.username }}</a>
-                        @ {{ children_comment.published_date }}</div>
-                    <div class="body">
-                        {{ children_comment.content }}
-                    </div>
+                <div>
+                    <h3><a href='{{ comment.url }}'>{{ comment.username }}</a>
+                        <small>{{ comment.published_date }}</small>
+                    </h3>
+                </div>
+                <div>
+                    <p>{{ comment.content }}</p>
                 </div>
             </li>
+            {% for children_comment in comment.children_comment %}
+                <hr style="border-top: dotted 1px;" />
+                <li style="margin-left:55px; margin-top:5px;">
+                    <h3><a href="{{ children_comment.url }}">{{ children_comment.username }}</a>
+                         <small>{{ children_comment.published_date }}</small></h3>
+                    <div>
+                        <p>{{ children_comment.content }}</p>
+                    </div>
+                </li>
+            {% endfor %}
+            <hr>
         {% endfor %}
-    {% endfor %}
-</ul>
-<hr>
-<br>
+    </ul>
+    <br>
 </div>
 
 <div class="container">
-    <h2 class="text-center">Leave Your Comments Here</h2><br>
+    <h2>Leave Your Comments Here</h2><br>
     <form action="{% url 'comment_post' %}" method="post">
         {% csrf_token %}
         <div class="form-group">
