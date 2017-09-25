@@ -1,14 +1,34 @@
 {% extends "base.html" %}
-{% block content %}
-    <div class="container">
+{% block navbar %}
+    {% include "navbar.html" %}
+{% endblock %}
+{% block main_content %}
+    <div class="col-md-8">
+        <div>
+            <h1 class="page-header text-center">
+                About Jeffery
+            </h1>
+        </div>
         <!-- Blog Entries -->
         <div class="post">
+            <img class="img-thumbnail" src="/static/image/avatar2.jpg" alt="" style="width: 100%; height: 30%;">
+            <!-- First Blog Post -->
             <div class="well-sm">
-                <h2>
-                    Your dreams are the greatest things on the earth.
-                </h2>
+                <h4>I am a junior developer with passion on building great web application and software.I achieved my
+                    bachelor degree fromUniversity of Victoria and major in computer science. I love my family. I love
+                    meeting new people and learning new things,so please feel free to say hello. When I'm not working, I
+                    will be in gym, in restaurant or somewhere in
+                    the world. Currently I set a 10 years personal goal of being an awesome developer and after that
+                    there
+                    will be a new goal.</h4>
+                <p>{{ article.content | safe }}</p><br>
+                <hr>
+                <!-- Share To Social Media -->
+                <!-- Comments -->
             </div>
         </div>
-        <hr>
     </div>
+{% endblock %}
+{% block side_widget %}
+    {% include "side_widget_me.html" %}
 {% endblock %}
