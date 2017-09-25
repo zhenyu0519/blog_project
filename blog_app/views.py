@@ -3,6 +3,8 @@ from models import *
 from django.core.paginator import Paginator, InvalidPage, EmptyPage, PageNotAnInteger
 from forms import CommentForm
 from django.shortcuts import redirect
+from django.http import HttpResponse
+import os
 
 # Create your views here.
 def index(request):
@@ -98,3 +100,20 @@ def archive(request):
     except Exception as e:
         pass
     return render(request,'archive.html',locals())
+
+def download(request):
+    filename = request.path.split('/')[3]
+    def read_file(fn, buf_size=262166):
+        f=open(fn,'rb')
+        while True:
+            c=f.read(buf_size)
+            if c:
+                yield c
+            else:
+                break
+        f.close()
+    path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))+'\static\\file\\resume.pdf'
+    response = HttpResponse(read_file(path),content_type='APPLICATION/OCTET=STREAM')
+    response['Content-Disposition']='attachment; filename=resume.pdf'
+    response['Content-Length']=os.path.getsize(os.path.join(path))
+    return response
