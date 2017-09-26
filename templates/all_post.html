@@ -7,14 +7,23 @@
     </div>
     <!-- Blog Entries -->
     {% for article in article_list %}
-    <div class="post">
-        <!-- First Blog Post -->
-        <div class="well-sm">
-            <h3>
-                <a href='{% url "article" %}?id={{ article.id }}'>{{ article.title }} {{ article.published_date }} {{ article.auther }}</a>
-            </h3>
-        </div>
-    </div><br><br>
+        <div class="post">
+            <!-- First Blog Post -->
+            <div class="well-sm">
+                <h3>{{ article.title }}</h3>
+                <hr>
+                <p><span class="glyphicon glyphicon-time"></span> Posted on {{ article.published_date }} |
+                    By {{ article.author }}</p>
+                <hr>
+                <p>{{ article.description }}</p>
+                <hr>
+                <div class="row">
+                    <div class="col-md-4">
+                        <a href='{% url "article" %}?id={{ article.id }}'><p><b> Read More >></b></p></a>
+                    </div>
+                </div>
+            </div>
+        </div><br><br>
     {% endfor %}
     <!-- Pager -->
     {% include "paginator.html" %}

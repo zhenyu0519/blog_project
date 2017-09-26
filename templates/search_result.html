@@ -12,16 +12,30 @@
         {% if error_msg %}
             <p>{{ error_msg }}</p>
         {% endif %}
-        {% for result in result_list %}
-            <div class="post">
-                <!-- First Blog Post -->
-                <div class="well-sm">
-                    <h3>
-                        <a href='{% url "article" %}?id={{ result.id }}'>{{ result.title }} {{ result.published_date }} {{ result.auther }}</a>
-                    </h3>
-                </div>
-            </div><br><br>
-        {% endfor %}
+        {% autoescape off %}
+            {% for article in article_list %}
+                <div class="post">
+                    <!-- First Blog Post -->
+                    <div class="well-sm">
+                        <h3>{{ article.title }}</h3>
+                        <hr>
+                        <p><span class="glyphicon glyphicon-time"></span> Posted On {{ article.published_date }} |
+                            By {{ article.auther }} | {{ article.article_category }}</p>
+                        <hr>
+                        <p>{{ article.description }}</p>
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <button class="btn">Read More <span
+                                        class="glyphicon glyphicon-chevron-right"></span></button>
+                            </div>
+                        </div>
+                    </div>
+                </div><br><br>
+            {% endfor %}
+        {% endautoescape %}
+        <!-- Pager -->
+        {% include "paginator.html" %}
     </div>
 {% endblock %}
 

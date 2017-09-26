@@ -130,7 +130,7 @@ def download(request):
 
 
 def search(request):
-    keyword = request.GET.get('keyword')
+    keyword = request.GET.get('keyword', None)
     error_msg = ""
 
     if not keyword:
@@ -139,7 +139,8 @@ def search(request):
 
     try:
         category_list = Category.objects.all()
-        article_list = Article.objects.all()
+        # article_list = Article.objects.all()
+        article_list = Article.objects.filter(title__icontains=keyword)
         paginator = Paginator(article_list, 5)
         try:
             page = int(request.GET.get('page', 1))
@@ -149,7 +150,6 @@ def search(request):
         archive_list = Article.objects.distinct_date()
     except Exception as e:
         print(e)
-    result_list = Article.objects.filter(title__icontains=keyword)
     return render(request, 'search_result.html', locals())
 
 def category(request):
