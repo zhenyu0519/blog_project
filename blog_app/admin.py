@@ -11,7 +11,7 @@ class ArticleAdmin(admin.ModelAdmin):
 
     fieldsets = (
         (None, {'fields': ('title', 'content', 'author', 'article_category')}),
-        ('Advanced Setting', {'classes': ('collapse',''), 'fields': ('description', 'article_image', 'visit_time',)
+        ('Advanced Setting', {'classes': ('collapse',''), 'fields': ('description', 'article_image',)
         }),
     )
 

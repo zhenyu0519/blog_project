@@ -29,13 +29,18 @@ class Article(models.Model):
     content = models.TextField(max_length=10000, blank=False, null=False)
     author = models.CharField(max_length=50, blank=False, null=False)
     published_date = models.DateTimeField(auto_now_add=True, blank=False, null=False)
-    visit_time = models.IntegerField(blank=False, null=False)
+    visit_time = models.PositiveIntegerField(default=0, blank=False, null=False)
+    comment_number = models.PositiveIntegerField(default=0, blank=False, null=False)
     article_category = models.ForeignKey(Category, blank=False, null=False)
     article_image = models.ImageField(upload_to='post_image/%Y%m%d', max_length=2000, blank=True, null=True)
 
     objects = ArticleManager()
     class Meta:
         ordering=['-published_date']
+
+    def increase_visit_time(self):
+        self.visit_time+=1
+        self.save(update_fields=['visit_time'])
 
     def __unicode__(self):
         return self.title

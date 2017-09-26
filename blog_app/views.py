@@ -47,6 +47,7 @@ def article(request):
     id = request.GET.get('id', None)
     try:
         article = Article.objects.get(pk=id)
+        article.increase_visit_time()
         comments = Comment.objects.filter(article=article).order_by("id")
         comment_list=[]
         for comment in comments:
@@ -58,8 +59,9 @@ def article(request):
                     break
             if comment.pid is None:
                 comment_list.append(comment)
-
         comment_form = CommentForm({'article':id})
+        article.comment_number = len(comments)
+        article.save()
     except Article.DoesNotExist:
         return render(request,'error.html',{'reason':'No matched article found'})
 
@@ -102,7 +104,6 @@ def archive(request):
     return render(request,'archive.html',locals())
 
 def download(request):
-    filename = request.path.split('/')[3]
     def read_file(fn, buf_size=262166):
         f=open(fn,'rb')
         while True:
