@@ -60,23 +60,6 @@ html, body{
     filter: alpha(opacity=100); /* For IE8 and earlier */
 }
 
-/*.btn{*/
-    /*border-radius: 9px;*/
-    /*font-family:'Oswald',sans-serif;*/
-    /*color:#0099cc;*/
-    /*font-size: 135%;*/
-    /*padding: 10px 20px;*/
-    /*border: solid #0099cc 3px;*/
-    /*text-transform: uppercase;*/
-    /*text-decoration: none;*/
-/*}*/
-
-/*.btn:hover{*/
-    /*color:#fff;*/
-    /*border: solid #fff 3px;*/
-/*}*/
-
-/*blog entries*/
 .well{
     background-color: #ffffff;
     box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.5);
@@ -91,6 +74,10 @@ html, body{
 .post{
     background-color: #ffffff;
     box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.5);
+}
+
+.panel {
+    background-color: #000000;
 }
 
 

@@ -148,6 +148,20 @@ def search(request):
             article_list = paginator.page(1)
         archive_list = Article.objects.distinct_date()
     except Exception as e:
-        print e
+        print(e)
     result_list = Article.objects.filter(title__icontains=keyword)
     return render(request, 'search_result.html', locals())
+
+def category(request):
+    try:
+        category=request.GET.get('category', None)
+        article_list = Article.objects.filter(article_category__category_name__icontains=category)
+        paginator = Paginator(article_list, 2)
+        try:
+            page = int(request.GET.get('page', 1))
+            article_list = paginator.page(page)
+        except(EmptyPage, InvalidPage, PageNotAnInteger):
+            article_list = paginator.page(1)
+    except Exception as e:
+        pass
+    return render(request, 'category.html', locals())
