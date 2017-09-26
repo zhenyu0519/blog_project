@@ -8,14 +8,17 @@
     <!-- Blog Search Well -->
     <div class="well">
         <h4>Blog Search</h4>
-        <div class="input-group">
-            <input type="text" class="form-control">
-            <span class="input-group-btn">
-                <button class="btn btn-default" type="button">
+        <form action="{% url "search" %}" method="get" role="search">
+            {% csrf_token %}
+            <div class="input-group">
+                <input type="text" class="form-control" name = "keyword" placeholder="Enter key words" required>
+                <span class="input-group-btn">
+                <button class="btn btn-default" type="submit">
                     <span class="glyphicon glyphicon-search"></span>
                 </button>
             </span>
-        </div>
+            </div>
+        </form>
     </div>
 
     <!-- Blog Categories Well -->
@@ -24,18 +27,18 @@
         <div class="row">
             <div class="col-lg-6">
                 <ul class="list-unstyled">
-                    {%for category in category_list|slice:":4"%}
-                    <li><a href="#">{{category.category_name}}</a>
-                    </li>
+                    {% for category in category_list|slice:":4" %}
+                        <li><a href="#">{{ category.category_name }}</a>
+                        </li>
                     {% endfor %}
                 </ul>
             </div>
             <!-- /.col-lg-6 -->
             <div class="col-lg-6">
                 <ul class="list-unstyled">
-                    {%for category in category_list|slice:"4:"%}
-                    <li><a href="#">{{category.category_name}}</a>
-                    </li>
+                    {% for category in category_list|slice:"4:" %}
+                        <li><a href="#">{{ category.category_name }}</a>
+                        </li>
                     {% endfor %}
                 </ul>
             </div>
@@ -49,8 +52,9 @@
             <div class="col-lg-6">
                 <ul class="list-unstyled">
                     {% for archive in archive_list|slice:":4" %}
-                    <li><a href="{% url 'archive' %}?year={{ archive | slice:":4" }}&month={{ archive | slice:"5:8" }}">{{ archive }}</a>
-                    </li>
+                        <li>
+                            <a href="{% url 'archive' %}?year={{ archive | slice:":4" }}&month={{ archive | slice:"5:8" }}">{{ archive }}</a>
+                        </li>
                     {% endfor %}
                 </ul>
             </div>
@@ -58,8 +62,9 @@
             <div class="col-lg-6">
                 <ul class="list-unstyled">
                     {% for archive in archive_list|slice:"4:" %}
-                    <li><a href="{% url 'archive' %}?year={{ archive | slice:":4" }}&month={{ archive | slice:"5:8" }}">{{ archive }}</a>
-                    </li>
+                        <li>
+                            <a href="{% url 'archive' %}?year={{ archive | slice:":4" }}&month={{ archive | slice:"5:8" }}">{{ archive }}</a>
+                        </li>
                     {% endfor %}
                 </ul>
             </div>

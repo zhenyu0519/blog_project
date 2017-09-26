@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block navbar %}
+    {% include "navbar.html" %}
+{% endblock %}
+
+{% block main_content %}
+    <div class="col-md-8">
+        <h1 class="page-header">
+            Search Results
+        </h1>
+        {% if error_msg %}
+            <p>{{ error_msg }}</p>
+        {% endif %}
+        {% for result in result_list %}
+            <div class="post">
+                <!-- First Blog Post -->
+                <div class="well-sm">
+                    <h3>
+                        <a href='{% url "article" %}?id={{ result.id }}'>{{ result.title }} {{ result.published_date }} {{ result.auther }}</a>
+                    </h3>
+                </div>
+            </div><br><br>
+        {% endfor %}
+    </div>
+{% endblock %}
+
+{% block side_widget %}
+    {% include "side_widget.html" %}
+{% endblock %}
