@@ -3,24 +3,33 @@
     {% include "navbar.html" %}
 {% endblock %}
 {% block main_content %}
-    <div class="col-md-8">
+    <div class="col-md-8 about-font">
         <div>
-            <h1 class="page-header">
-                About Jeffery
+            <h1 class="page-header text-center">
+                About Zhenyu
             </h1>
         </div>
         <!-- Blog Entries -->
         <div class="post">
-            <img class="img-thumbnail" src="/static/image/avatar2.jpg" alt="" style="width: 100%; height: 30%;">
+            <img class="img-thumbnail" src="/static/image/avatar2.jpg" alt="" style="width: 100%; height: 30%;"><br><br>
             <!-- First Blog Post -->
             <div class="well-sm">
-                <h4>I am a junior developer with passion on building great web application and software.I achieved my
-                    bachelor degree fromUniversity of Victoria and major in computer science. I love my family. I love
-                    meeting new people and learning new things,so please feel free to say hello. When I'm not working, I
-                    will be in gym, in restaurant or somewhere in
-                    the world. Currently I set a 10 years personal goal of being an awesome developer and after that
-                    there
-                    will be a new goal.</h4>
+                <i class="fa fa-quote-left" aria-hidden="true"></i>
+                <h1 style="color:#5bc0de;">Sometimes on the way to your dream, you get lost and find a better one.</h1><i
+                    class="fa fa-quote-right pull-right" aria-hidden="true"></i><br><br>
+                <h3>Zhenyu is a developer with passion on building great web application and software. He is also
+                    interested in AI, big data and deep learning. <br><br>
+                    He has been in development field for over 2 years but learning new knowledge is still his # 1
+                    hobby. <br><br>
+                    He achieved his bachelor degree of Computer Science from University of Victoria in Canada. <br><br>
+                    He is living in Vancouver B.C, where the most liveable city in the world. <br><br>
+                    He loves his family and friends. <br><br>
+                    He admires Jack Ma, Mark Zuckerberg and Elon Musk. <br><br>
+                    He want to become expert level developer for next ten years. <br><br>
+                    He has lifetime goal that is help more people get educated and then make the world better.
+                    <br><br><br>
+                    <span class="glyphicon glyphicon-star-empty"></span><br><br> This website is built by Python Django framework, MySQL database deployed on Amazon Web Services EC2
+                </h3>
                 <p>{{ article.content | safe }}</p><br>
                 <hr>
                 <!-- Share To Social Media -->
@@ -31,4 +40,7 @@
 {% endblock %}
 {% block side_widget %}
     {% include "side_widget_me.html" %}
+{% endblock %}
+{% block footer %}
+    {% include "footer.html" %}
 {% endblock %}

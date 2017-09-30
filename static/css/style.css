@@ -92,6 +92,11 @@ html, body{
 
 
 /*about me*/
+.about-font{
+    font-family: 'Indie Flower', cursive;
+    font-size: large;
+    font-weight: bold;
+}
 .cloud { width: 100%; clear: both; overflow: hidden }
 .cloud h3 { line-height: 40px; color: #38485A; font-size: 18px; border-bottom: 1px solid #E6E6E6; height: 40px; }
 .cloud ul { margin: 20px 0 }

@@ -122,7 +122,7 @@ def download(request):
                 break
         f.close()
 
-    path = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) + '\static\\file\\resume.pdf'
+    path = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) + '/static/file/resume.pdf'
     response = HttpResponse(read_file(path), content_type='APPLICATION/OCTET=STREAM')
     response['Content-Disposition'] = 'attachment; filename=resume.pdf'
     response['Content-Length'] = os.path.getsize(os.path.join(path))
