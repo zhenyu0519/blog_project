@@ -26,7 +26,7 @@ class ArticleManager(models.Manager):
 class Article(models.Model):
     title = models.CharField(max_length=100, blank=False, null=False, unique=True)
     description = models.CharField(max_length=250, blank=True, null=True)
-    content = models.TextField(max_length=10000, blank=False, null=False)
+    content = models.TextField(max_length=15000, blank=False, null=False)
     author = models.CharField(max_length=50, blank=False, null=False)
     published_date = models.DateTimeField(auto_now_add=True, blank=False, null=False)
     visit_time = models.PositiveIntegerField(default=0, blank=False, null=False)
