@@ -6,12 +6,19 @@
         </h1>
     </div>
     <!-- Blog Search Well -->
+    <div class=" well text-center LI-profile-badge" data-version="v1" data-size="large" data-locale="en_US"
+         data-type="vertical"
+         data-theme="light" data-vanity="zhenyu-zhang"><a class="LI-simple-link"
+                                                         href='https://ca.linkedin.com/in/zhenyu-zhang?trk=profile-badge'>Zhenyu(Jeffery)
+        Zhang</a>
+    </div>
     <div class="well">
         <h4>Blog Search</h4>
         <form action="{% url "search" %}" method="get" role="search">
             {% csrf_token %}
             <div class="input-group">
-                <input type="text" class="form-control" name = "keyword" placeholder="Enter a keyword" pattern="^[a-zA-Z1-9].*" required>
+                <input type="text" class="form-control" name="keyword" placeholder="Enter a keyword"
+                       pattern="^[a-zA-Z1-9].*" required>
                 <span class="input-group-btn">
                 <button class="btn btn-default" type="submit">
                     <span class="glyphicon glyphicon-search"></span>
@@ -28,7 +35,8 @@
             <div class="col-lg-6">
                 <ul class="list-unstyled">
                     {% for category in category_list|slice:":4" %}
-                        <li><a href="{% url 'category' %}?category={{ category.category_name|safe  }}">{{ category.category_name }}</a>
+                        <li>
+                            <a href="{% url 'category' %}?category={{ category.category_name|safe }}">{{ category.category_name }}</a>
                         </li>
                     {% endfor %}
                 </ul>
@@ -37,7 +45,8 @@
             <div class="col-lg-6">
                 <ul class="list-unstyled">
                     {% for category in category_list|slice:"4:" %}
-                        <li><a href="{% url 'category' %}?category={{ category.category_name|safe }}">{{ category.category_name }}</a>
+                        <li>
+                            <a href="{% url 'category' %}?category={{ category.category_name|safe }}">{{ category.category_name }}</a>
                         </li>
                     {% endfor %}
                 </ul>
