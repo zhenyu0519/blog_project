@@ -1,25 +1,31 @@
-<div id="pagination">
-    <ul class="pager well">
-        {% if article_list.has_previous %}
-            <button class="previous btn pull-left">
-                <a href="?page=
-                        {{ article_list.previous_page_number }}{% if request.GET.year %}&year={{ request.GET.year }}{% endif %}{% if request.GET.month %}&month={{ request.GET.month }}{% endif %}{% if request.GET.category %}&category={{ request.GET.category }}{% endif %}{% if request.GET.keyword %}&keyword={{ request.GET.keyword }}{% endif %}">
-                    <span class="glyphicon glyphicon-hand-left"> Newer</span></a>
-            </button>
-        {% else %}
-            <button class="previous btn pull-left"><span class="glyphicon glyphicon-hand-left"> Newer</span></button>
-        {% endif %}
-
-        <li class="active">{{ article_list.number }}/{{ article_list.paginator.num_pages }}</li>
-
-        {% if article_list.has_next %}
-            <button class="next btn pull-right">
-                <a href="?page=
-                        {{ article_list.next_page_number }}{% if request.GET.year %}&year={{ request.GET.year }}{% endif %}{% if request.GET.month %}&month={{ request.GET.month }}{% endif %}{% if request.GET.category %}&category={{ request.GET.category }}{% endif %}{% if request.GET.keyword %}&keyword={{ request.GET.keyword }}{% endif %}">
-                    <span class="glyphicon glyphicon-hand-right"> Older</span></a>
-            </button>
-        {% else %}
-            <button class="next btn pull-right"><span class="glyphicon glyphicon-hand-right"> Older</span></button>
-        {% endif %}
-    </ul>
+<div class="container">
+    <div class="row justify-content-center align-items-center">
+        <ul class="pagination text-center">
+            {% if article_list.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ article_list.previous_page_number }}">&laquo;</a>
+                </li>
+            {% else %}
+                <li class="sr-only">
+                    <a class="page-link" href="#"><span>&laquo;</span></a>
+                </li>
+            {% endif %}
+            {% for i in article_list.paginator.page_range %}
+                {% if article_list.number == i %}
+                    <li class="page-item active"><a class="page-link" href="#">{{ i }}</a></li>
+                {% else %}
+                    <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                {% endif %}
+            {% endfor %}
+            {% if article_list.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ article_list.next_page_number }}">&raquo;</a>
+                </li>
+            {% else %}
+               <li class="sr-only">
+                    <a class="page-link" href="#"><span>&raquo;</span></a>
+                </li>
+            {% endif %}
+        </ul>
+    </div>
 </div>

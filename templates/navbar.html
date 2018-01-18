@@ -1,12 +1,25 @@
-<nav class="navbar navbar-default">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <a href="/home" class="navbar-brand"><h2 class="about-font">Zhang, Zhenyu's Blog</h2></a>
+<nav class="navbar navbar-expand-md navbar-dark sticky-top">
+    <div class="container">
+        <!--Brand/logo-->
+        <a href="/home" class="navbar-brand">Zheny.ca <i class="fa fa-plane" aria-hidden="true"></i></a>
+        <!--button for toggle/collapse-->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <!--Navbar links-->
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/home">
+                        Home
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/about">
+                        Me
+                    </a>
+                </li>
+            </ul>
         </div>
-        <ul class="nav navbar-nav pull-right">
-            <li><a href="/home"><h3><span class="glyphicon glyphicon-home"> Home</span></h3></a></li>
-            <li><a href="/post"><h3><span class="glyphicon glyphicon-pencil"> Post</span></h3></a></li>
-            <li><a href="/about"><h3><span class="glyphicon glyphicon-sunglasses"> Me</span></h3></a></li>
-        </ul>
     </div>
 </nav>

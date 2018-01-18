@@ -1,69 +1,160 @@
-/*image heading*/
-@import url('https://fonts.googleapis.com/css?family=Raleway');
-@import url('https://fonts.googleapis.com/css?family=Oswald&effect=stonewash');
+@import url('https://fonts.googleapis.com/css?family=Lato|Titillium+Web:300');
 
 html, body {
     margin: 0;
     padding: 0;
-    height: 100%;
-    width: 100%;
-    background-color: #f1f1f1;
+    height: 100% !important;
+    font-size: 17px;
+    font-family: 'Titillium Web', sans-serif !important;
+
 }
 
-.intro {
-    height: 90%;
-    width: 100%;
-    margin: auto;
-    background: url("/static/image/bg2.jpg") no-repeat 50% 50%;
-    display: table;
-    top: 0;
-    background-size: cover;
+h1 {
+    font-family: 'Lato', sans-serif !important;
 }
 
-.intro .inner {
-    display: table-cell;
-    vertical-align: middle;
-    width: 100%;
-    max-width: none;
+/*overwrite the bootstrap anchor color*/
+.page-link {
+    color: #17a2b8 !important;
 }
 
-.content {
-    max-width: 500px;
-    margin: 0 auto;
+.page-item.active .page-link {
+    z-index: 2;
+    color: #fff !important;
+    background-color: #17a2b8 !important;
+    border-color: #17a2b8 !important;
+}
+
+
+/*navbar*/
+.navbar {
+    background-color:rgba(0,0,0,0.6);
+}
+
+/*end of navbar*/
+
+/*recent-post*/
+article.post {
+    letter-spacing: .75px;
+    margin: 100px 0 0 0;
+    padding: 10px 0 0 0;
+    font-weight: 300;
+    line-height: 45px;
+}
+
+#read-more {
+    text-decoration: none;
+    color: #17a2b8;
+}
+
+#read-more :visited{
+    text-decoration: none;
+    color: #868e96;
+}
+
+#read-more :hover{
+    text-decoration: none;
+    color: #868e96;
+}
+.post-info {
+    display: inline-block;
+}
+/*end of recent-post*/
+/*weather-widget*/
+#weather-widget{
     text-align: center;
+    letter-spacing: .75px;
+    margin: 120px 0 0 0;
+    font-weight: 300;
+    color: whitesmoke;
+    background-image: url("/static/image/weather-background.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
 }
 
-#avatar {
-    padding: 50px;
-    width: 250px;
-    opacity: 0.5;
-    filter: alpha(opacity=50); /* For IE8 and earlier */
+#weather-icon{
+    max-width: 60px;
+    max-height: 70px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
+}
+/*end of weather-widget*/
+
+/*search-widget*/
+#search-widget {
+    text-align: center;
+    margin: 50px 0 0 0;
+}
+/*end of search-widget*/
+
+/*category-widget*/
+#category-widget {
+    letter-spacing: .5px;
+    margin: 50px 0 0 0;
 }
 
-#avatar:hover {
-    opacity: 1;
-    filter: alpha(opacity=100); /* For IE8 and earlier */
+.blog-category-tag a:link{
+    text-decoration: none;
+    font-size: 150%;
+    padding: 0px 30px;
+    text-align: center;
+    color: whitesmoke;
+}
+.blog-category-tag a:visited{
+    text-decoration: none;
+    font-size: 150%;
+    padding: 0px 30px;
+    text-align: center;
+    color: whitesmoke;
 }
 
-.well {
-    background-color: #ffffff;
-    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.5);
+.blog-category-tag a:hover{
+    text-decoration: none;
+    font-size: 200%;
+    padding: 0px 30px;
+    text-align: center;
+    color: whitesmoke;
 }
+/*end of category-widget*/
 
-.btn {
-    border: 1px solid #d3d3d3;
-    border-radius: 5%;
-    background-color: #ffffff;
+/* search-result */
+#search-result{
+    text-align: center;
+    margin: 50px 0 0 0;
 }
+/* end of search-result*/
 
-.post {
-    background-color: #ffffff;
-    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.5);
+/* category-result */
+#category-result{
+    text-align: center;
+    margin: 50px 0 0 0;
 }
+/* end of category-result*/
 
-.panel {
-    background-color: #000000;
+/* comment */
+.comment{
+    margin: 150px 0 0 0;
 }
+/* end of comment*/
+
+/* profile-widget */
+#profile-widget {
+    text-align: center;
+    letter-spacing: .75px;
+    margin: 120px 0 0 0;
+    font-weight: 300;
+}
+/* end of perofile-widget*/
+
+/*social-widget*/
+#social-widget {
+    text-align: left;
+    margin: 50px 0 0 0;
+}
+/*end of social widget*/
 
 /*footer*/
 .footer-bottom {
@@ -81,109 +172,6 @@ html, body {
     font-weight: bold;
 }
 
-.cloud {
-    width: 100%;
-    clear: both;
-    overflow: hidden
-}
-
-.cloud h3 {
-    line-height: 40px;
-    color: #38485A;
-    font-size: 18px;
-    border-bottom: 1px solid #E6E6E6;
-    height: 40px;
-}
-
-.cloud ul {
-    margin: 20px 0
-}
-
-.cloud ul li {
-    line-height: 24px;
-    height: 24px;
-    display: block;
-    background: #999;
-    float: left;
-    padding: 3px 11px;
-    margin: 10px 10px 0 0;
-    border-radius: 8px;
-    -moz-transition: all 0.5s;
-    -webkit-transition: all 0.5s;
-    -o-transition: all 0.5s;
-    transition: all 0.5s;
-}
-
-.cloud ul li a {
-    color: #FFF
-}
-
-.cloud ul li:nth-child(8n-7) {
-    background: #8A9B0F
-}
-
-.cloud ul li:nth-child(8n-6) {
-    background: #EB6841
-}
-
-.cloud ul li:nth-child(8n-5) {
-    background: #3FB8AF
-}
-
-.cloud ul li:nth-child(8n-4) {
-    background: #FE4365
-}
-
-.cloud ul li:nth-child(8n-3) {
-    background: #FC9D9A
-}
-
-.cloud ul li:nth-child(8n-2) {
-    background: #EDC951
-}
-
-.cloud ul li:nth-child(8n-1) {
-    background: #C8C8A9
-}
-
-.cloud ul li:nth-child(8n) {
-    background: #83AF9B
-}
-
-.cloud ul li:first-child {
-    background: #036564
-}
-
-.cloud ul li:last-child {
-    background: #3299BB
-}
-
-.cloud ul li:hover {
-    border-radius: 0;
-    text-shadow: #000 1px 1px 1px
-}
-
-/*social links*/
-.social:hover {
-    -webkit-transform: scale(1.1);
-    -moz-transform: scale(1.1);
-    -o-transform: scale(1.1);
-}
-
-.social {
-    -webkit-transform: scale(0.8);
-    /* Browser Variations: */
-
-    -moz-transform: scale(0.8);
-    -o-transform: scale(0.8);
-    -webkit-transition-duration: 0.5s;
-    -moz-transition-duration: 0.5s;
-    -o-transition-duration: 0.5s;
-}
-
-/*
-    Multicoloured Hover Variations
-*/
 
 #social-facebook:hover {
     color: #3B5998;

@@ -1,0 +1,15 @@
+<!-- search widget -->
+<div id="search-widget">
+    <form action="{% url 'search' %}" method="get" role="search">
+        {% csrf_token %}
+        <div class="input-group">
+            <input id="search-content" type="text" class="form-control" name="keyword" placeholder="Search With A Keyword"
+                   pattern="^[a-zA-Z1-9].*" required>
+            <div class="input-group-btn">
+                <button class="btn btn-outline-info" type="submit" id="search-button">
+                    <i class="fa fa-search" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+    </form>
+</div>

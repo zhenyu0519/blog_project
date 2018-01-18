@@ -1,41 +1,24 @@
-<!-- Blog Entries Column -->
-<div class="col-md-8">
-    <div>
-        <h1 class="page-header">
-            Recent Posts
-        </h1>
+<!-- Blog Entries -->
+{% autoescape off %}
+{% for article in article_list %}
+{% if error_msg %}
+    <p>{{ error_msg }}</p>
+{% endif %}
+<article class="post">
+    <h1 class="post-title">
+        {{ article.title }}
+    </h1>
+    <!--include post date and category-->
+    <div class="post-info"><span class="badge badge-secondary"><i class="fa fa-clock-o" aria-hidden="true"></i> {{ article.published_date }}</span> </div>
+    <div class="post-info"><span class="badge badge-info"><i class="fa fa-tag" aria-hidden="true"></i> {{ article.article_category}}</span></div>
+    <div class="post-description">
+        <p>{{ article.description }}</p>
     </div>
-    <!-- Blog Entries -->
-    {% autoescape off %}
-    {% for article in article_list %}
-    <div class="post">
-        <img class="img-responsive" src="/uploads/{{ article.article_image }}" alt="" style="width: 100%">
-        <!-- First Blog Post -->
-        <div class="well-sm">
-            <h2>
-                {{ article.title }}
-            </h2>
-        </div>
-        <div class="well-sm">
-            <p><span class="glyphicon glyphicon-time"></span> Posted on {{ article.published_date }} | by {{ article.author }}</p>
-            <hr>
-            <p>{{ article.description }}</p>
-            <hr>
-            <div class="row">
-                <div class="col-md-4">
-                    <a href='{% url "article" %}?id={{ article.id }}'><p><b> Read More >></b></p></a>
-                </div>
-                <div class="col-md-4">
-                    <p><b> Visits </b>( {{ article.visit_time }} )</p>
-                </div>
-                <div class="col-md-4">
-                    <p><b> Comments </b>( {{ article.comment_number }} )</p>
-                </div>
-            </div>
-        </div>
-    </div><br><br>
-    {% endfor %}
-    {% endautoescape %}
-    <!-- Pager -->
-    {% include "paginator.html" %}
-</div>
+    <a id="read-more" href='{% url "article" %}?id={{ article.id }}'><p><b> Read More >></b></p></a>
+</article>
+<hr>
+{% endfor %}
+{% endautoescape %}
+
+<!-- Pager -->
+{% include "paginator.html" %}

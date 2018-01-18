@@ -1,0 +1,10 @@
+<!-- Categories widget -->
+<div id="category-widget">
+    <div class="blog-category-tag">
+        {% for category in category_list %}
+            <span>
+                <a href="{% url 'category' %}?category={{ category.category_name|safe }}">{{ category.category_name }}</a>
+            </span>
+        {% endfor %}
+    </div>
+</div>

@@ -1,0 +1,41 @@
+<!--category search results-->
+{% extends "base.html" %}
+
+{% block navbar %}
+    {% include "navbar.html" %}
+{% endblock %}
+
+{% block main_content %}
+    <h1 id="category-result">
+        {{ request.GET.category }}
+    </h1>
+    {% if error_msg %}
+        <p>{{ error_msg }}</p>
+    {% endif %}
+    {% autoescape off %}
+        {% for article in article_list %}
+            <article class="post">
+                <h1 class="post-title">
+                    {{ article.title }}
+                </h1>
+                <div class="post-info"><span class="badge badge-secondary"><i class="fa fa-clock-o" aria-hidden="true"></i> {{ article.published_date }}</span> </div>
+                <div class="post-info"><span class="badge badge-info"><i class="fa fa-tag" aria-hidden="true"></i> {{ article.article_category}}</span></div>
+                <div class="post-description">
+                    <p>{{ article.description }}</p>
+                </div>
+                <a id="read-more" href='{% url "article" %}?id={{ article.id }}'><p><b> Read More >></b></p></a>
+            </article>
+        {% endfor %}
+    {% endautoescape %}
+    <!-- Pager -->
+    {% include "paginator.html" %}
+{% endblock %}
+
+{% block side_widget %}
+    {% include "search_widget.html" %}
+    {% include "category_widget.html" %}
+{% endblock %}
+
+{% block footer %}
+    {% include "footer.html" %}
+{% endblock %}

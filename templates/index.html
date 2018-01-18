@@ -1,9 +1,5 @@
 {% extends "base.html" %}
 
-{% block image_header %}
-    {% include "image_header.html" %}
-{% endblock %}
-
 {% block navbar %}
     {% include "navbar.html" %}
 {% endblock %}
@@ -13,7 +9,9 @@
 {% endblock %}
 
 {% block side_widget %}
-    {% include "side_widget.html" %}
+    {% include "weather_widget.html" %}
+    {% include "search_widget.html" %}
+    {% include "category_widget.html" %}
 {% endblock %}
 
 {% block footer %}

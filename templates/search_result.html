@@ -1,3 +1,4 @@
+<!--search results-->
 {% extends "base.html" %}
 
 {% block navbar %}
@@ -5,40 +6,36 @@
 {% endblock %}
 
 {% block main_content %}
-    <div class="col-md-8">
-        <h1 class="page-header">
-            Search Results
-        </h1>
-        {% if error_msg %}
-            <p>{{ error_msg }}</p>
-        {% endif %}
-        {% autoescape off %}
-            {% for article in article_list %}
-                <div class="post">
-                    <!-- First Blog Post -->
-                    <div class="well-sm">
-                        <h3>{{ article.title }}</h3>
-                        <hr>
-                        <p><span class="glyphicon glyphicon-time"></span> Posted On {{ article.published_date }} |
-                            By {{ article.auther }} | {{ article.article_category }}</p>
-                        <hr>
-                        <p>{{ article.description }}</p>
-                        <hr>
-                        <div class="row">
-                            <div class="col-md-4">
-                                <button class="btn">Read More <span
-                                        class="glyphicon glyphicon-chevron-right"></span></button>
-                            </div>
-                        </div>
-                    </div>
-                </div><br><br>
-            {% endfor %}
-        {% endautoescape %}
-        <!-- Pager -->
-        {% include "paginator.html" %}
-    </div>
+    <h1 id="search-result">
+        Search Results
+    </h1>
+    {% if error_msg %}
+        <p>{{ error_msg }}</p>
+    {% endif %}
+    {% autoescape off %}
+        {% for article in article_list %}
+        <article class="post">
+            <h1 class="post-title">
+                {{ article.title }}
+            </h1>
+            <div class="post-info"><span class="badge badge-secondary"><i class="fa fa-clock-o" aria-hidden="true"></i> {{ article.published_date }}</span> </div>
+            <div class="post-info"><span class="badge badge-info"><i class="fa fa-tag" aria-hidden="true"></i> {{ article.article_category}}</span></div>
+            <div class="post-description">
+                <p>{{ article.description }}</p>
+            </div>
+            <a id="read-more" href='{% url "article" %}?id={{ article.id }}'><p><b> Read More >></b></p></a>
+        </article>
+        {% endfor %}
+    {% endautoescape %}
+    <!-- Pager -->
+    {% include "paginator.html" %}
 {% endblock %}
 
 {% block side_widget %}
-    {% include "side_widget.html" %}
+    {% include "search_widget.html" %}
+    {% include "category_widget.html" %}
+{% endblock %}
+
+{% block footer %}
+    {% include "footer.html" %}
 {% endblock %}

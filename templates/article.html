@@ -3,27 +3,27 @@
     {% include "navbar.html" %}
 {% endblock %}
 {% block main_content %}
-    <div>
+    <article class="post">
         <h1 class="page-header text-center">
             {{ article.title }}
         </h1>
+        <img class="img-responsive" src="{{ article.article_image.url }}" alt="" style="width: 100%">
+            <div class="post-info"><span class="badge badge-secondary"><i class="fa fa-clock-o" aria-hidden="true"></i> {{ article.published_date }}</span> </div>
+            <div class="post-info"><span class="badge badge-info"><i class="fa fa-tag" aria-hidden="true"></i> {{ article.article_category}}</span></div>
+            <div class="post-info"><span class="badge badge-success"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> {{ article.author }}</span></div>
+        <div class="post-info"><span class="badge badge-warning"><i class="fa fa-eye" aria-hidden="true"></i> {{ article.visit_time }} views</span></div>
+            <p>{{ article.content | safe }}</p>
+    </article>
+    <!-- Comments -->
+    <div class="comment">
+        {% load disqus_tags %}
+        {% disqus_show_comments %}
+        {% disqus_recent_comments shortname 5 50 0 24 %}
+        <a href="{{ object.get_absolute_url }}#disqus_thread" data-disqus-identifier="{{ object.id }}">View Comments</a>
+        {% disqus_num_replies %}
     </div>
-    <!-- Blog Entries -->
-    <div class="post">
-        <img class="img-responsive" src="/uploads/{{ article.article_image }}" alt="" style="width: 100%">
-        <!-- First Blog Post -->
-        <div class="well-sm">
-            <h4><span class="glyphicon glyphicon-tag"> {{ article.article_category }}</span></h4>
-            <h4><span class="glyphicon glyphicon-time"> {{ article.published_date }}</span></h4>
-            <h4><span class="glyphicon glyphicon-pencil"> {{ article.author }}</span></h4>
-            <hr>
-            <p>{{ article.content | safe }}</p><br>
-            <hr>
-            <!-- Share To Social Media -->
-            <!-- Comments -->
-        </div>
-        {% include "comment.html" %}
-    </div>
-
+{% endblock %}
+{% block footer %}
+    {% include "footer.html" %}
 {% endblock %}
 

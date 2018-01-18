@@ -1,7 +1,6 @@
 from django.shortcuts import render
 from models import *
 from django.core.paginator import Paginator, InvalidPage, EmptyPage, PageNotAnInteger
-from forms import CommentForm
 from django.shortcuts import redirect
 from django.http import HttpResponse
 import os
@@ -12,14 +11,14 @@ def index(request):
     try:
         category_list = Category.objects.all()
         article_list = Article.objects.all()
-        paginator = Paginator(article_list, 3)
+        page = request.GET.get('page', 1)
+        paginator = Paginator(article_list, 5)
         try:
-            page = int(request.GET.get('page', 1))
             article_list = paginator.page(page)
         except(EmptyPage, InvalidPage, PageNotAnInteger):
             article_list = paginator.page(1)
 
-        archive_list = Article.objects.distinct_date()
+        # archive_list = Article.objects.distinct_date()
         # for a in archive_list:
         #     print a
     except Exception as e:
@@ -31,40 +30,11 @@ def home(request):
     return render(request, 'index.html', locals())
 
 
-def post(request):
-    try:
-        category_list = Category.objects.all()
-        article_list = Article.objects.all()
-        paginator = Paginator(article_list, 5)
-        try:
-            page = int(request.GET.get('page', 1))
-            article_list = paginator.page(page)
-        except(EmptyPage, InvalidPage, PageNotAnInteger):
-            article_list = paginator.page(1)
-        archive_list = Article.objects.distinct_date()
-    except Exception as e:
-        print e
-    return render(request, 'post.html', locals())
-
-
 def article(request):
     id = request.GET.get('id', None)
     try:
         article = Article.objects.get(pk=id)
         article.increase_visit_time()
-        comments = Comment.objects.filter(article=article).order_by("id")
-        comment_list = []
-        for comment in comments:
-            for item in comment_list:
-                if not hasattr(item, 'children_comment'):
-                    setattr(item, 'children_comment', [])
-                if comment.pid == item:
-                    item.children_comment.append(comment)
-                    break
-            if comment.pid is None:
-                comment_list.append(comment)
-        comment_form = CommentForm({'article': id})
-        article.comment_number = len(comments)
         article.save()
     except Article.DoesNotExist:
         return render(request, 'error.html', {'reason': 'No matched article found'})
@@ -72,43 +42,26 @@ def article(request):
     return render(request, 'article.html', locals())
 
 
-def comment_post(request):
-    try:
-        comment_form = CommentForm(request.POST)
-        if comment_form.is_valid():
-            comment = Comment.objects.create(username=comment_form.cleaned_data["username"],
-                                             email=comment_form.cleaned_data["email"],
-                                             url=comment_form.cleaned_data["url"],
-                                             content=comment_form.cleaned_data["comment"],
-                                             article_id=comment_form.cleaned_data["article"],
-                                             )
-            comment.save()
-        else:
-            return render(request, 'error.html', {'reason': comment_form.errors})
-    except Exception as e:
-        print e
-    return redirect(request.META['HTTP_REFERER'])
-
 
 def about(request):
     return render(request, 'about.html', locals())
 
 
-def archive(request):
-    try:
-        year = request.GET.get('year', None)
-        month = request.GET.get('month', None)
-        article_list = Article.objects.filter(published_date__icontains=year + '-' + month)
-        paginator = Paginator(article_list, 5)
-        try:
-            page = int(request.GET.get('page', 1))
-            article_list = paginator.page(page)
-        except(EmptyPage, InvalidPage, PageNotAnInteger):
-            article_list = paginator.page(1)
-        archive_list = Article.objects.distinct_date()
-    except Exception as e:
-        pass
-    return render(request, 'archive.html', locals())
+# def archive(request):
+#     try:
+#         year = request.GET.get('year', None)
+#         month = request.GET.get('month', None)
+#         article_list = Article.objects.filter(published_date__icontains=year + '-' + month)
+#         paginator = Paginator(article_list, 5)
+#         try:
+#             page = int(request.GET.get('page', 1))
+#             article_list = paginator.page(page)
+#         except(EmptyPage, InvalidPage, PageNotAnInteger):
+#             article_list = paginator.page(1)
+#         archive_list = Article.objects.distinct_date()
+#     except Exception as e:
+#         pass
+#     return render(request, 'archive.html', locals())
 
 
 def download(request):
@@ -140,23 +93,24 @@ def search(request):
     try:
         category_list = Category.objects.all()
         # article_list = Article.objects.all()
-        article_list = Article.objects.filter(title__icontains=keyword)
+        article_list = Article.objects.filter(title__icontains=keyword, content__icontains=keyword)
         paginator = Paginator(article_list, 5)
         try:
             page = int(request.GET.get('page', 1))
             article_list = paginator.page(page)
         except(EmptyPage, InvalidPage, PageNotAnInteger):
             article_list = paginator.page(1)
-        archive_list = Article.objects.distinct_date()
+        # archive_list = Article.objects.distinct_date()
     except Exception as e:
         print(e)
     return render(request, 'search_result.html', locals())
 
 def category(request):
     try:
+        category_list = Category.objects.all()
         category=request.GET.get('category', None)
         article_list = Article.objects.filter(article_category__category_name__icontains=category)
-        paginator = Paginator(article_list, 2)
+        paginator = Paginator(article_list, 5)
         try:
             page = int(request.GET.get('page', 1))
             article_list = paginator.page(page)
@@ -164,4 +118,4 @@ def category(request):
             article_list = paginator.page(1)
     except Exception as e:
         pass
-    return render(request, 'category.html', locals())
+    return render(request, 'category_result.html', locals())

@@ -1,4 +1,5 @@
 from django.db import models
+from ckeditor.fields import RichTextField
 
 # Create your models here.
 
@@ -24,15 +25,14 @@ class ArticleManager(models.Manager):
 
 # Article
 class Article(models.Model):
-    title = models.CharField(max_length=100, blank=False, null=False, unique=True)
-    description = models.CharField(max_length=250, blank=True, null=True)
-    content = models.TextField(max_length=15000, blank=False, null=False)
-    author = models.CharField(max_length=50, blank=False, null=False)
-    published_date = models.DateTimeField(auto_now_add=True, blank=False, null=False)
-    visit_time = models.PositiveIntegerField(default=0, blank=False, null=False)
-    comment_number = models.PositiveIntegerField(default=0, blank=False, null=False)
-    article_category = models.ForeignKey(Category, blank=False, null=False)
-    article_image = models.ImageField(upload_to='post_image/%Y%m%d', max_length=2000, blank=True, null=True)
+    title = models.CharField(max_length=100,unique=True)
+    description = models.CharField(max_length=250)
+    content = RichTextField(max_length=60000)
+    author = models.CharField(max_length=50)
+    published_date = models.DateTimeField(auto_now_add=True)
+    visit_time = models.PositiveIntegerField(default=0)
+    article_category = models.ForeignKey(Category)
+    article_image = models.ImageField(upload_to='%Y%m%d', max_length=3000)
 
     objects = ArticleManager()
     class Meta:
@@ -45,20 +45,3 @@ class Article(models.Model):
     def __unicode__(self):
         return self.title
 
-
-
-# Comment
-class Comment(models.Model):
-    username = models.CharField(max_length=50, blank=True, null=True)
-    email = models.EmailField(max_length=50, blank=True, null=True)
-    url = models.URLField(max_length=100, blank=True, null=True)
-    content = models.CharField(max_length=500, blank=False, null=False)
-    published_date = models.DateTimeField(auto_now_add=True, blank=False, null=False)
-    article = models.ForeignKey(Article, max_length=50, blank=False, null=False)
-    pid = models.ForeignKey('self',blank=True, null=True)
-
-    class Meta:
-        ordering=['-published_date']
-
-    def __unicode__(self):
-        return str(self.id)

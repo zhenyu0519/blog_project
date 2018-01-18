@@ -31,12 +31,21 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = (
     'django.contrib.admin',
+    # add this app in order to use disqus
+    'django.contrib.sites',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # add my own app
     'blog_app',
+    # add the rich text editor
+    'ckeditor',
+    # add storage
+    'storages',
+    # add the disqus comment
+    'disqus',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -78,11 +87,12 @@ WSGI_APPLICATION = 'blog_project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME':'blogdb',
-        'USER':'root',
-        'PASSWORD':'362908227',
-        'HOST':'', #default 127.0.0.1
-        'POST':'', #default 3306
+        'NAME':'blogdatabase',
+        'USER':'jeffery',
+        'PASSWORD':'1234uiop',
+        # aws mysql endpoint
+        'HOST':'jefferypersonal.nt5fjebdro3.us-east-1.rds.amazonaws.com', #default 127.0.0.1
+        'POST':'3306', #default 3306
     }
 }
 
@@ -99,21 +109,46 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+# AWS S3 setting
+AWS_ACCESS_KEY_ID = 'AKIAJGQINBFXYF4FW65'
+AWS_SECRET_ACCESS_KEY = 'XCq82gTr2FancJOpqQfPCXDIaOXcM7TrfV6qsdo'
+AWS_STORAGE_BUCKET_NAME = 'jz-blogv2-assets'
+AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com'% AWS_STORAGE_BUCKET_NAME
+AWS_S3_OBJECT_PARAMETERS = {
+    'Expires': 'Thu, 31 Dec 2099 20:00:00 GMT',
+    'CacheControl': 'max-age=94608000',
+}
+# AWS_LOCATION = 'static'
 
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.8/howto/static-files/
-
-STATIC_URL = '/static/'
-# Static dir define the additional locations the staticfiles app will traverse
+# This setting defines the additional locations the staticfiles
+# app will traverse if the FileSystemFinder finder is enabled,
+# e.g. if you use the collectstatic or findstatic management command or use the static file serving view.
 STATICFILES_DIRS=[
 os.path.join(BASE_DIR, 'static')
 ]
-# # Set the static root setting to the directory from which you would like to serve
-# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-# Set the upload url
-MEDIA_URL = '/uploads/'
+#static setting for static files
+STATIC_URL = 'https://%s/static/' % (AWS_S3_CUSTOM_DOMAIN)
+STATICFILES_LOCATION = 'static'
+STATICFILES_STORAGE = 'custom_storages.StaticStorage'
 
-# Set tje upload path
-MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
+# STATIC_URL = '/static/'
+
+# media setting for uploading files
+MEDIA_URL = 'https://%s/media/' % (AWS_S3_CUSTOM_DOMAIN)
+MEDIAFILES_LOCATION = 'media'
+DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
+
+
+
+CKEDITOR_UPLOAD_PATH = 'uploads/'
+
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': None,
+    },
+}
+
+# Disqus comment system setting
+DISQUS_API_KEY = '9aDAxQHmTGKPR9tuT5JobOkpsqWhXQpKofFAGnkZzrJJm1mAQ0bG2lFooka0UJk'
+DISQUS_WEBSITE_SHORTNAME = 'zhenyu'
